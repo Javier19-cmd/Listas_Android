@@ -6,7 +6,8 @@ import androidx.recyclerview.widget.RecyclerView
 
 class Adaptador: RecyclerView.Adapter<Adaptador.ItemsViewMolder>() {
 
-    class ItemsViewMolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+    //Creando lista.
+    private var items: MutableList<String> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemsViewMolder {
         TODO("Not yet implemented")
@@ -19,4 +20,6 @@ class Adaptador: RecyclerView.Adapter<Adaptador.ItemsViewMolder>() {
     override fun getItemCount(): Int {
         TODO("Not yet implemented")
     }
+
+    class ItemsViewMolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 }
