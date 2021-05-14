@@ -1,64 +1,50 @@
-package com.uvg.listas
+package com.uvg.Listas
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.widget.LinearLayout
-import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.activity_main.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
+import com.uvg.listas.R
+import kotlinx.android.synthetic.main.item_lista.view.*
 
-class MainActivity : AppCompatActivity() {
-    private val adaptador = Adaptador()
+class Adaptador(private val clickListener: (Int) -> Unit): RecyclerView.Adapter<Adaptador.ItemsViewHolder>() {
+    private var items: MutableList<String> = mutableListOf()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-       /* val items: MutableList<String> = mutableListOf()
-        items.add("Prueba 1")
-        items.add("Prueba 2")
-        items.add("Prueba 3")
-        items.add("Prueba 3")
-        items.add("Prueba 3")
-        items.add("Prueba 3")
-        items.add("Prueba 3")
-        items.add("Prueba 3")
-        items.add("Prueba 3")
-        items.add("Prueba 3")
-        items.add("Prueba 3")
-        items.add("Prueba 3")
-        items.add("Prueba 3")
-        items.add("Prueba 3")
-        items.add("Prueba 3")
-        items.add("Prueba 3")
-        items.add("Prueba 3")
-        items.add("Prueba 3")
-        items.add("Prueba 3")
-        items.add("Prueba 3")
-        items.add("Prueba 3")
-        items.add("Prueba 3")
-        items.add("Prueba 3")
-        items.add("Prueba 3")
-        items.add("Prueba 3")
-        items.add("Prueba 3")
-        items.add("Prueba 3")
-        items.add("Prueba 3")
-        items.add("Prueba 3")
-        items.add("Prueba 3")
-        items.add("Prueba 3")
-        items.add("Prueba 3")*/
-
-        //val adaptador = Adaptador(adaptador)
-
-        val items: MutableList<String> = mutableListOf()
-
-        items.add("Prueba 1")
-        items.add("Prueba 2")
-        items.add("Prueba 3")
-
-
-        adaptador.setItems(items)
-
-        lista.layoutManager = LinearLayoutManager(this)
-        lista.adapter = adaptador
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemsViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_lista,parent,false)
+        return ItemsViewHolder(view)
     }
+
+    override fun onBindViewHolder(holder: ItemsViewHolder, position: Int) {
+        val item = items[position]
+        holder.bind(item, clickListener)
+    }
+
+    override fun getItemCount(): Int {
+        return items.size
+    }
+
+    fun setItems(nuevosItems: MutableList<String>) {
+
+        this.items = nuevosItems
+        notifyDataSetChanged()
+
+    }
+
+    fun getItem(position: Int):String {
+
+        return items[position]
+
+    }
+
+    class ItemsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+        fun bind(item: String, click: (Int) -> Unit) = with(itemView) {
+            txtTitulo.text = item
+
+            setOnClickListener { click(adapterPosition)}
+        }
+
+    }
+
 }
