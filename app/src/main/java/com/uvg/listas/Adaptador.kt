@@ -18,7 +18,7 @@ class Adaptador: RecyclerView.Adapter<Adaptador.ItemsViewMolder>() {
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return items.size //Retornando el tamaño de la lista.
     }
 
     class ItemsViewMolder(itemView: View) : RecyclerView.ViewHolder(itemView)
