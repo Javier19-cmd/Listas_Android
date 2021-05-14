@@ -9,6 +9,10 @@ import kotlinx.android.synthetic.main.item_lista.view.*
 
 class Adaptador(private val clickListener: (Int) -> Unit): RecyclerView.Adapter<Adaptador.ItemsViewHolder>() {
 
+    //Agregar texto
+    //Elimnar
+    //Modificar el texto
+
     private var items: MutableList<String> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemsViewHolder {
